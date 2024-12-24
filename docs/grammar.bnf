@@ -1,0 +1,83 @@
+// **SQL-Like Relational Database Grammar**
+
+// Top-Level Command
+<command> ::= <create_table> 
+            | <insert_into> 
+            | <select> 
+            | <delete_from> 
+            | <update> 
+            | <drop_table>
+
+// Data Types
+<data_type> ::= "INT" | "STRING" | "FLOAT" | "BOOLEAN"
+
+// Identifiers and Values
+<identifier> ::= <letter> (<letter> | <digit> | "_")*
+<value> ::= <int_value> | <string_value> | <float_value> | <boolean_value>
+<int_value> ::= <digit>+
+<string_value> ::= "'" <character>* "'"
+<float_value> ::= <digit>+ "." <digit>+
+<boolean_value> ::= "TRUE" | "FALSE"
+
+
+
+// Basic Character Rules
+<letter> ::= "a" | ... | "z" | "A" | ... | "Z"
+<digit> ::= "0" | ... | "9"
+<character> ::= any valid character except "'" or control characters
+
+
+
+// CREATE TABLE Command
+<create_table> ::= "CREATE TABLE" <identifier> "(" <column_list> ")"
+<column_list> ::= <column_definition> ("," <column_definition>)*
+<column_definition> ::= <identifier> <data_type>
+CREATE TABLE tab (id INT, name STRING)  
+
+
+// INSERT INTO Command
+<insert_into> ::= "INSERT INTO" <identifier> "VALUES" "(" <value_list> ")"
+<value_list> ::= <value> ("," <value>)*
+INSERT INTO tab (1 , ravi)
+
+
+
+// SELECT Command
+<select> ::= "SELECT" <select_list> "FROM" <identifier> [<where_clause>] [<order_by_clause>]
+<select_list> ::= "*" | <identifier> ("," <identifier>)*
+<where_clause> ::= "WHERE" <condition>
+<order_by_clause> ::= "ORDER BY" <identifier> ["ASC" | "DESC"]
+<condition> ::= <identifier> <comparison_operator> <value> 
+              | <condition> "AND" <condition> 
+              | <condition> "OR" <condition>
+<comparison_operator> ::= "=" | "!=" | ">" | ">=" | "<" | "<="
+SELECT 
+
+
+
+// DELETE Command
+<delete_from> ::= "DELETE FROM" <identifier> [<where_clause>]
+DELETE FROM tab 
+
+
+// UPDATE Command
+<update> ::= "UPDATE" <identifier> "SET" <update_list> [<where_clause>]
+<update_list> ::= <identifier> "=" <value> ("," <identifier> "=" <value>)*
+
+
+
+// DROP TABLE Command
+<drop_table> ::= "DROP TABLE" <identifier>
+
+
+
+// Optional Grammar Extensions
+<join_clause> ::= "INNER JOIN" <identifier> "ON" <condition>
+                | "LEFT JOIN" <identifier> "ON" <condition>
+                | "RIGHT JOIN" <identifier> "ON" <condition>
+
+
+
+<alter_table> ::= "ALTER TABLE" <identifier> <alter_action>
+<alter_action> ::= "ADD COLUMN" <column_definition>
+                 | "DROP COLUMN" <identifier>
