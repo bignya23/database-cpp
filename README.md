@@ -26,7 +26,7 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
      ```
 3. **SHOW ENTRIES**:
    - Show all the entries that is present in that particular table
-     ```bash
+     ```sql
      SHOW ENTREIS FROM tablename
 3. **B+ Tree Integration**:
    - Tables are stored as `B+ Tree` structures for efficient data management and retrieval.
