@@ -8,7 +8,7 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
 
 ---
 
-## Features
+## USAGE
 
 1. **CREATE TABLE**:
    - Create a new table with a specified schema.
@@ -28,10 +28,6 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
    - Show all the entries that is present in that particular table
      ```sql
      SHOW ENTREIS FROM tablename
-3. **B+ Tree Integration**:
-   - Tables are stored as `B+ Tree` structures for efficient data management and retrieval.
-
-
 
 ## Getting Started
 
