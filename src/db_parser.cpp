@@ -81,12 +81,10 @@ std::optional<Table_fn> Parser::parse_tokens() {
 
 		while (peek().has_value()) {
 
-			Column new_col;
-
-			new_col.name = peek().value().val.value();
+			std::string curr_val = peek().value().val.value();
 			consume();
 
-			tb_schema.columns.push_back(new_col);
+			tb_schema.columns.push_back(curr_val);
 
 
 			if (peek().has_value() && peek().value().token == TokenType::COMMA || peek().has_value() && peek().value().token == TokenType::CLOSE_PAREN) {

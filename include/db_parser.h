@@ -11,6 +11,9 @@ struct Column {
     std::string name{};
     std::string type{};
 };
+struct Insert_Col {
+    std::string value{};
+};
 
 struct Create_table {
 	std::string table_name;
@@ -18,7 +21,7 @@ struct Create_table {
 };
 struct Insert_table {
     std::string table_name;
-    std::vector<Column> columns;
+    std::vector<std::string> columns;
 };
 
 struct Table_fn {
@@ -29,6 +32,7 @@ class Parser {
 public:
 
 	explicit Parser(std::vector<Token> tokens) : tokens_(tokens) {} // constructor
+
 
 	std::optional<Table_fn> parse_tokens();
     std::optional<Ident> ident_get();

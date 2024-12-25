@@ -4,6 +4,10 @@
 
 std::unordered_map<std::string, struct Create_table> Executor::tableSchemas;
 
+std::unordered_map<std::string, std::shared_ptr<BPlusTree<int, std::vector<std::string>>>> Executor::tabledata;
+
+std::unordered_map<std::string, int> Executor::keys;
+
 
 struct Executor::CommandExecutor {
     CommandExecutor(Executor& executor) : executor_(executor) {}
@@ -11,30 +15,39 @@ struct Executor::CommandExecutor {
     // For table creation
     void operator() (const Create_table tb_schema) const {
 
-        // Inserting the table schema
-        executor_.tableSchemas[tb_schema.table_name] = tb_schema;
+        // Checking if database name already exist
+        if (executor_.tabledata.find(tb_schema.table_name) == executor_.tabledata.end()) {
+            // Inserting the table schema
+            executor_.tableSchemas[tb_schema.table_name] = tb_schema;
+            // Initializing counting the keys map
+            executor_.keys[tb_schema.table_name] = 0;
+            //Creation of b+ tree
+            executor_.tabledata[tb_schema.table_name] = std::make_shared<BPlusTree<int, std::vector<std::string>>>();
 
-        // Creation of b+ tree
-      /*  executor_.tabledata[tb_schema.table_name] = std::make_shared<BPlusTree<int, std::vector<std::string>>>();*/
-
-        std::cout << "Table: " << tb_schema.table_name << " Created Successfully\n";
+            std::cout << "Table: " << tb_schema.table_name << " Created Successfully\n";
+        }
+        else {
+            std::cerr << "Table already exist!!!\n";
+            exit(1);
+        }
+        
     }
 
     // For insert operating in the tree
     void operator() (const Insert_table tb_schema) const {
         // Searching if table exist
-        bool found = false;
-        for (auto& table_name : executor_.tableSchemas) {
-            if (table_name.first == tb_schema.table_name) {
-                std::cout << "Inserted into Table: " << tb_schema.table_name << " Successfully\n";
-                found = true;
-            }
-        }
+        if (executor_.tabledata.find(tb_schema.table_name) != executor_.tabledata.end()) {
+            // Calling the insertion function in the bplustree
+            executor_.tabledata[tb_schema.table_name]->insert(executor_.keys[tb_schema.table_name]++, tb_schema.columns);
+            
+            //std::cout << executor_.keys[tb_schema.table_name] << "\n";
+            std::cout << "Inserted into Table: " << tb_schema.table_name << " Successfully\n";
 
-        if (!found)
-        {
+        }
+        else {
             std::cerr << "Table not found\n";
         }
+   
        
     }
 

@@ -16,8 +16,10 @@ public:
 
 private:
     static std::unordered_map<std::string, struct Create_table> tableSchemas;
-	/*std::unordered_map<std::string,std::shared_ptr<BPlusTree<int, std::vector<std::string>>>> tabledata;*/
 
+	static std::unordered_map<std::string,std::shared_ptr<BPlusTree<int, std::vector<std::string>>>> tabledata;
+
+	static std::unordered_map<std::string, int> keys;
 	struct CommandExecutor;
 
 
