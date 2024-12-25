@@ -22,8 +22,8 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
    - Insert a row into a table.
    - Example:
      ```sql
-     INSERT INTO Users (1, "Alice", "alice@example.com");
-     INSERT INTO Users (2, "Bob", "bob@example.com");
+     INSERT INTO Users (1, "Ravi", "ravi@example.com");
+     INSERT INTO Users (2, "John", "john@example.com");
      ```
 
 3. **B+ Tree Integration**:
