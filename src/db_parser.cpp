@@ -92,13 +92,30 @@ std::optional<Table_fn> Parser::parse_tokens() {
 			}
 		}
 		return Table_fn{ .var = tb_schema };
-
-
-
 	}
+	// For getting all the entries
+	else if (peek().has_value() && peek().value().token == TokenType::SHOW && peek(1).has_value() && peek(1).value().token == TokenType::ENTRIES && peek(2).has_value() && peek(2).value().token == TokenType::FROM) {
+		consume();
+		consume();
+		consume(); // Show entries from
+
+		Show_Entries new_entries;
+		
+		if (peek().has_value() && peek().value().token == TokenType::IDENTIFIER) { // TABLE NAME
+			if (auto identifier = ident_get()) {
+				new_entries.table_name = identifier.value().ident;
+			}
+		}
+		else {
+			std::cerr << "Identifier Not Found \n";
+			exit(EXIT_FAILURE);
+		}
+		return Table_fn{ .var = new_entries };
+	}
+
+	// For errors
 	else {
-		throw std::runtime_error("Syntax Error!!!");
+		std::cerr << "Syntax Error!!!\n";
+		exit(1);
 	}
-
-	
 }

@@ -41,6 +41,11 @@ CREATE TABLE tab (id INT, name STRING)
 INSERT INTO tab (1 , ravi)
 
 
+// To show all the entries
+SHOW_ENTRIES_COMMAND ::= "SHOW" "ENTRIES" "FROM" IDENTIFIER ";"
+SHOW ENTRIES FROM tab
+
+
 
 // SELECT Command
 <select> ::= "SELECT" <select_list> "FROM" <identifier> [<where_clause>] [<order_by_clause>]
@@ -81,3 +86,5 @@ DELETE FROM tab
 <alter_table> ::= "ALTER TABLE" <identifier> <alter_action>
 <alter_action> ::= "ADD COLUMN" <column_definition>
                  | "DROP COLUMN" <identifier>
+
+

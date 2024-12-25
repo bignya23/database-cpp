@@ -23,9 +23,12 @@ struct Insert_table {
     std::string table_name;
     std::vector<std::string> columns;
 };
+struct Show_Entries {
+    std::string table_name{};
+};
 
 struct Table_fn {
-    std::variant<Create_table, Insert_table> var;
+    std::variant<Create_table, Insert_table, Show_Entries> var;
 };
 
 class Parser {

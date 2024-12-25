@@ -7,7 +7,7 @@
 
 enum class TokenType {
     // Keywords
-    SELECT, FROM, WHERE, AND, OR, NOT, INSERT, INTO, VALUES, UPDATE, DELETE, CREATE, TABLE,
+    SELECT, FROM, WHERE, AND, OR, NOT, INSERT, INTO, VALUES, UPDATE, DELETE, CREATE, TABLE, SHOW, ENTRIES,
     // Data Types
     INT, STRING, BOOLEAN, DATE,
     // Operators

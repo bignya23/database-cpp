@@ -50,6 +50,17 @@ struct Executor::CommandExecutor {
    
        
     }
+    // Show all the entries present in a particular database
+    void operator()(const Show_Entries new_entry) {
+        if (executor_.tabledata.find(new_entry.table_name) != executor_.tabledata.end()) {
+            // Calling the insertion function in the bplustree
+            executor_.tabledata[new_entry.table_name]->print();
+         
+        }
+        else {
+            std::cerr << "Table not found\n";
+        }
+    }
 
 private:
     Executor& executor_;

@@ -170,7 +170,11 @@ public:
         size_t count = 0;
         while (current != nullptr) {
             for (size_t i = 0; i < current->keys.size(); ++i) {
-                std::cout << current->keys[i] << " - " << current->values[i] << std::endl;
+                std::cout << current->keys[i] << "  -  ";
+                for (auto& it : current->values[i]) {
+                    std::cout << it << ", ";
+                }
+                std::cout << std::endl;
                 count++;
 
                 // Print progress every 1000 entries

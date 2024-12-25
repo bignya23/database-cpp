@@ -23,20 +23,30 @@ std::vector<Token> Tokenizer::tokens() {
 			else if (buffer == "TABLE") {
 				tokens.push_back({ TokenType::TABLE });
 			}
-			else if (buffer == "INT") {
-				tokens.push_back({ TokenType::INT ,buffer});
-			}
-			else if (buffer == "STRING") {
-				tokens.push_back({ TokenType::STRING , buffer});
-			}
-			else if (buffer == "BOOL") {
-				tokens.push_back({ TokenType::BOOLEAN ,buffer});
-			}
 			else if (buffer == "INSERT") {
 				tokens.push_back({ TokenType::INSERT });
 			}
 			else if (buffer == "INTO") {
 				tokens.push_back({ TokenType::INTO});
+			}
+			else if (buffer == "SHOW") {
+				tokens.push_back({ TokenType::SHOW });
+			}
+			else if (buffer == "ENTRIES") {
+				tokens.push_back({ TokenType::ENTRIES });
+			}
+			else if (buffer == "FROM") {
+				tokens.push_back({ TokenType::FROM });
+			}
+			// Data types 
+			else if (buffer == "INT") {
+				tokens.push_back({ TokenType::INT ,buffer });
+			}
+			else if (buffer == "STRING") {
+				tokens.push_back({ TokenType::STRING , buffer });
+			}
+			else if (buffer == "BOOL") {
+				tokens.push_back({ TokenType::BOOLEAN ,buffer });
 			}
 			else {
 				tokens.push_back({ TokenType::IDENTIFIER,buffer});
