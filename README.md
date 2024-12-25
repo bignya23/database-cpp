@@ -29,7 +29,7 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
 3. **B+ Tree Integration**:
    - Tables are stored as `B+ Tree` structures for efficient data management and retrieval.
 
----
+
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
 - A C++ compiler supporting C++17 or later (e.g., g++, clang, MSVC).
 - [CMake](https://cmake.org/) for build automation (optional).
 
----
+
 
 ### Building the Project
 
@@ -58,23 +58,6 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
    ./database-cpp
    ```
 
----
-
-### Example Usage
-
-1. Start the CLI by running the built executable.
-2. Enter the following commands:
-
-#### Creating a Table
-```plaintext
-CREATE TABLE Users (id INT, name STRING, email STRING);
-```
-
-#### Inserting Rows
-```plaintext
-INSERT INTO Users (1, "Alice", "alice@example.com");
-INSERT INTO Users (2, "Bob", "bob@example.com");
-```
 
 
 ## Contributing
