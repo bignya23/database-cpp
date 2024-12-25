@@ -32,11 +32,24 @@ std::vector<Token> Tokenizer::tokens() {
 			else if (buffer == "BOOL") {
 				tokens.push_back({ TokenType::BOOLEAN ,buffer});
 			}
+			else if (buffer == "INSERT") {
+				tokens.push_back({ TokenType::INSERT });
+			}
+			else if (buffer == "INTO") {
+				tokens.push_back({ TokenType::INTO});
+			}
 			else {
 				tokens.push_back({ TokenType::IDENTIFIER,buffer});
 			}
 			buffer.clear();
  		}
+		else if (std::isdigit(peek().value())) {
+			while (peek().has_value() && std::isdigit(peek().value())) {
+				buffer.push_back(consume());
+			}
+			tokens.push_back({ TokenType::INT_LITERAL, buffer});
+			buffer.clear();
+		}
 		else if (peek().value() == '(') {
 			tokens.push_back({ TokenType::OPEN_PAREN });
 			consume();
@@ -54,7 +67,6 @@ std::vector<Token> Tokenizer::tokens() {
 		}
 		else {
 			std::cerr << "Unknown token " << buffer << "\n";
-			
 			break;
 		}
 	}

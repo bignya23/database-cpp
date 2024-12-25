@@ -7,8 +7,6 @@
 
 
 class Executor {
-
-
 public:
 	explicit Executor(std::optional<Table_fn> parse_tokens){
 		command = parse_tokens;
@@ -17,8 +15,9 @@ public:
 	void Run_command();
 
 private:
-	std::unordered_map<std::string, struct Create_table> tableSchemas;
-	std::unordered_map< std::string, std::shared_ptr < BPlusTree<int, std::vector<std::string>>>> tabledata;
+    static std::unordered_map<std::string, struct Create_table> tableSchemas;
+	/*std::unordered_map<std::string,std::shared_ptr<BPlusTree<int, std::vector<std::string>>>> tabledata;*/
+
 	struct CommandExecutor;
 
 

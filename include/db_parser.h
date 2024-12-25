@@ -8,8 +8,8 @@ struct Ident {
 };
 
 struct Column {
-	std::string name;
-	std::string type;
+    std::string name{};
+    std::string type{};
 };
 
 struct Create_table {
