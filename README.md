@@ -8,28 +8,26 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
 
 ---
 
-## Features
+## USAGE
 
-### Current Functionality
 1. **CREATE TABLE**:
    - Create a new table with a specified schema.
    - Example:
      ```sql
-     CREATE TABLE Users (id INT, name STRING, email STRING);
+     CREATE TABLE tablename (id INT, name STRING, email STRING);
      ```
 
 2. **INSERT INTO**:
    - Insert a row into a table.
    - Example:
      ```sql
-     INSERT INTO Users (1, Ravi, ravi@example.com);
-     INSERT INTO Users (2, John, john@example.com);
+     INSERT INTO tablename (1, Ravi, ravi@example.com);
+     INSERT INTO tablename (2, John, john@example.com);
      ```
-
-3. **B+ Tree Integration**:
-   - Tables are stored as `B+ Tree` structures for efficient data management and retrieval.
-
-
+3. **SHOW ENTRIES**:
+   - Show all the entries that is present in that particular table
+     ```sql
+     SHOW ENTRIES FROM tablename
 
 ## Getting Started
 
