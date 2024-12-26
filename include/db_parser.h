@@ -31,7 +31,7 @@ struct Table_fn {
     std::variant<Create_table, Insert_table, Show_Entries> var;
 };
 
-class Parser {
+class Parser { 
 public:
 
 	explicit Parser(std::vector<Token> tokens) : tokens_(tokens) {} // constructor

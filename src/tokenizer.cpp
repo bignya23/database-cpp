@@ -1,5 +1,16 @@
 #include "../include/tokenizer.h"
 
+// For character checking in identifiers
+bool allowed_chars(char ch){
+	if (isalpha(ch) || isdigit(ch)) {
+		return true;
+	}
+	else if (ch == '-' || ch == '_' || ch == '@' || ch == '.') {
+		return true;
+	}
+	
+	return false;
+}
 
 
 std::vector<Token> Tokenizer::tokens() {
@@ -10,42 +21,42 @@ std::vector<Token> Tokenizer::tokens() {
 
 	while (peek().has_value()) {
 		if (isalpha(peek().value())){
-			while (peek().has_value() && isalpha(peek().value())) {
+			while (peek().has_value() && allowed_chars(peek().value())) {
 				buffer.push_back(consume());
 			}
 
-			if (buffer == "SELECT") {
+			if (buffer == "SELECT" || buffer == "select") {
 				tokens.push_back({ TokenType::SELECT });
 			}
-			else if (buffer == "CREATE") {
+			else if (buffer == "CREATE" || buffer == "create") {
 				tokens.push_back({ TokenType::CREATE });
 			}
-			else if (buffer == "TABLE") {
+			else if (buffer == "TABLE" || buffer == "table") {
 				tokens.push_back({ TokenType::TABLE });
 			}
-			else if (buffer == "INSERT") {
+			else if (buffer == "INSERT" || buffer == "insert") {
 				tokens.push_back({ TokenType::INSERT });
 			}
-			else if (buffer == "INTO") {
+			else if (buffer == "INTO" || buffer == "into") {
 				tokens.push_back({ TokenType::INTO});
 			}
-			else if (buffer == "SHOW") {
+			else if (buffer == "SHOW" || buffer == "show") {
 				tokens.push_back({ TokenType::SHOW });
 			}
-			else if (buffer == "ENTRIES") {
+			else if (buffer == "ENTRIES" || buffer == "entries") {
 				tokens.push_back({ TokenType::ENTRIES });
 			}
-			else if (buffer == "FROM") {
+			else if (buffer == "FROM" || buffer == "from") {
 				tokens.push_back({ TokenType::FROM });
 			}
 			// Data types 
-			else if (buffer == "INT") {
-				tokens.push_back({ TokenType::INT ,buffer });
+			else if (buffer == "INT" || buffer == "int") {
+				tokens.push_back({ TokenType::INT , buffer });
 			}
-			else if (buffer == "STRING") {
+			else if (buffer == "STRING" || buffer == "string") {
 				tokens.push_back({ TokenType::STRING , buffer });
 			}
-			else if (buffer == "BOOL") {
+			else if (buffer == "BOOL" || buffer == "bool") {
 				tokens.push_back({ TokenType::BOOLEAN ,buffer });
 			}
 			else {
@@ -76,8 +87,7 @@ std::vector<Token> Tokenizer::tokens() {
 			consume();
 		}
 		else {
-			std::cerr << "Unknown token " << buffer << "\n";
-			break;
+			throw std::runtime_error("Unknown Token!!!\n");
 		}
 	}
 

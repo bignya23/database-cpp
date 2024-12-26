@@ -29,11 +29,11 @@ std::optional<Table_fn> Parser::parse_tokens() {
 			
 		}
 		else {
-			std::cerr << "Identifier Not Found \n";
-			exit(EXIT_FAILURE);
+			throw std::runtime_error("Identifier doesn't exist\n");
 		}
 		if (peek().has_value() && peek().value().token != TokenType::OPEN_PAREN) { // (
-			throw std::runtime_error("Open_Paren doesn't exist!!!");
+			throw std::runtime_error("Open_Paren doesn't exist!!!\n");
+
 		}
 		consume();
 
@@ -70,8 +70,7 @@ std::optional<Table_fn> Parser::parse_tokens() {
 
 		}
 		else {
-			std::cerr << "Identifier Not Found \n";
-			exit(EXIT_FAILURE);
+			throw std::runtime_error("Identifier Not Found");	
 		}
 		if (peek().has_value() && peek().value().token != TokenType::OPEN_PAREN) { // (
 			throw std::runtime_error("Open_Paren doesn't exist!!!");
@@ -107,15 +106,13 @@ std::optional<Table_fn> Parser::parse_tokens() {
 			}
 		}
 		else {
-			std::cerr << "Identifier Not Found \n";
-			exit(EXIT_FAILURE);
+			throw std::runtime_error("Identifier Not Found \n");
 		}
 		return Table_fn{ .var = new_entries };
 	}
 
 	// For errors
 	else {
-		std::cerr << "Syntax Error!!!\n";
-		exit(1);
+		throw std::runtime_error("Syntax Error\n");
 	}
 }

@@ -179,7 +179,7 @@ public:
 
                 // Print progress every 1000 entries
                 if (count % 1000 == 0) {
-                    std::cout << "... " << count << " entries printed ..." << std::endl;
+                    std::cout << "... " << count << " entries  ..." << std::endl;
                 }
             }
             current = current->next;

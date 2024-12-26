@@ -35,22 +35,46 @@ void Database::db_start() {
 			std::cout << "Not Implemented now!!!" << std::endl;
 		}
 		
-		std::cout << line << "\n";
+		//std::cout << line << "\n";
+		
 
-		Tokenizer tokenize(line); // Tokenization
-		std::vector<Token> tokens = tokenize.tokens();
-		std::cout << "Tokenization Successful\n";
+		// Tokenization
+		Tokenizer tokenize(line);
+		std::vector<Token> tokens;
+		try {
+			tokens = tokenize.tokens();
+		}
+		catch (std::exception& e) {
+			std::cout << "ERROR : " << e.what() << std::endl;
+			continue;
+		}
+
+		
+		//std::cout << "Tokenization Successful\n";
 		
 
 		// Parsing
 		Parser parse(tokens);
-		std::optional<Table_fn> parse_tokens = parse.parse_tokens();
-		std::cout << "Parsing Successful\n";
+		std::optional<Table_fn> parse_tokens;
+		try {
+			parse_tokens = parse.parse_tokens();
+		}
+		catch (std::exception& e) {
+			std::cout << "ERROR : " << e.what() << std::endl;
+			continue;
+		}
+		//std::cout << "Parsing Successful\n";
 
 
 		// Executing
 		Executor execute(parse_tokens);
-		execute.Run_command();
+		try {
+			execute.Run_command();
+		}
+		catch (std::exception& e) {
+			std::cout << "ERROR : " << e.what() << std::endl;
+			continue;
+		}
 	
 	}
 }

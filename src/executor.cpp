@@ -27,8 +27,7 @@ struct Executor::CommandExecutor {
             std::cout << "Table: " << tb_schema.table_name << " Created Successfully\n";
         }
         else {
-            std::cerr << "Table already exist!!!\n";
-            exit(1);
+            throw std::runtime_error("Table already exist!!!\n");
         }
         
     }
@@ -45,7 +44,8 @@ struct Executor::CommandExecutor {
 
         }
         else {
-            std::cerr << "Table not found\n";
+            throw std::runtime_error("Table not found\n");
+
         }
    
        
@@ -58,7 +58,7 @@ struct Executor::CommandExecutor {
          
         }
         else {
-            std::cerr << "Table not found\n";
+            throw std::runtime_error("Table not found\n");
         }
     }
 
@@ -71,7 +71,7 @@ void Executor::Run_command() {
         std::visit(CommandExecutor{*this}, command->var);
     }
     else {
-        std::cerr << "Invalid Instruction!!!";
-        exit(EXIT_FAILURE);
+        throw std::runtime_error("Invalid Instruction!!!\n");
+
     }
 }
