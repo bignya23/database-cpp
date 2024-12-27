@@ -44,8 +44,16 @@ std::optional<Table_fn> Parser::parse_tokens() {
 
 			new_col.name = peek().value().val.value();
 			consume();
-			new_col.type = peek().value().val.value();
-			consume();
+			// Checking for Type literals
+			if (peek().has_value() && (peek().value().token == TokenType::INT || peek().value().token == TokenType::STRING || peek().value().token == TokenType::BOOLEAN)) {
+				new_col.type = peek().value().val.value();
+				consume();
+			}
+			else {
+				throw std::runtime_error("Type Literal Not found");
+			}
+
+			// Insertion
 			tb_schema.columns.push_back(new_col);
 		
 
@@ -113,6 +121,6 @@ std::optional<Table_fn> Parser::parse_tokens() {
 
 	// For errors
 	else {
-		throw std::runtime_error("Syntax Error\n");
+		throw std::runtime_error("Syntax Error");
 	}
 }

@@ -2,7 +2,7 @@
 
 // For character checking in identifiers
 bool allowed_chars(char ch){
-	if (isalpha(ch) || isdigit(ch)) {
+	if (isalnum(ch)) {
 		return true;
 	}
 	else if (ch == '-' || ch == '_' || ch == '@' || ch == '.') {
@@ -20,7 +20,7 @@ std::vector<Token> Tokenizer::tokens() {
 	//bool is_error = false;
 
 	while (peek().has_value()) {
-		if (isalpha(peek().value())){
+		if (isalnum(peek().value())){
 			while (peek().has_value() && allowed_chars(peek().value())) {
 				buffer.push_back(consume());
 			}
@@ -49,6 +49,9 @@ std::vector<Token> Tokenizer::tokens() {
 			else if (buffer == "FROM" || buffer == "from") {
 				tokens.push_back({ TokenType::FROM });
 			}
+			else if (buffer == "DROP" || buffer == "drop") {
+				tokens.push_back({ TokenType::DROP});
+			}
 			// Data types 
 			else if (buffer == "INT" || buffer == "int") {
 				tokens.push_back({ TokenType::INT , buffer });
@@ -64,13 +67,13 @@ std::vector<Token> Tokenizer::tokens() {
 			}
 			buffer.clear();
  		}
-		else if (std::isdigit(peek().value())) {
+		/*else if (std::isdigit(peek().value())) {
 			while (peek().has_value() && std::isdigit(peek().value())) {
 				buffer.push_back(consume());
 			}
 			tokens.push_back({ TokenType::INT_LITERAL, buffer});
 			buffer.clear();
-		}
+		}*/
 		else if (peek().value() == '(') {
 			tokens.push_back({ TokenType::OPEN_PAREN });
 			consume();

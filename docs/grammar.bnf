@@ -28,41 +28,31 @@
 
 
 
-// CREATE TABLE Command
+// CREATE TABLE Command // DONE
 <create_table> ::= "CREATE TABLE" <identifier> "(" <column_list> ")"
 <column_list> ::= <column_definition> ("," <column_definition>)*
 <column_definition> ::= <identifier> <data_type>
 CREATE TABLE tab (id INT, name STRING)  
 
 
-// INSERT INTO Command
+// INSERT INTO Command   // DONE
 <insert_into> ::= "INSERT INTO" <identifier> "VALUES" "(" <value_list> ")"
 <value_list> ::= <value> ("," <value>)*
 INSERT INTO tab (1 , ravi)
 
 
-// To show all the entries
+// To show all the entries // DONE
 SHOW_ENTRIES_COMMAND ::= "SHOW" "ENTRIES" "FROM" IDENTIFIER ";"
 SHOW ENTRIES FROM tab
 
 
 
-// SELECT Command
-<select> ::= "SELECT" <select_list> "FROM" <identifier> [<where_clause>] [<order_by_clause>]
-<select_list> ::= "*" | <identifier> ("," <identifier>)*
-<where_clause> ::= "WHERE" <condition>
-<order_by_clause> ::= "ORDER BY" <identifier> ["ASC" | "DESC"]
-<condition> ::= <identifier> <comparison_operator> <value> 
-              | <condition> "AND" <condition> 
-              | <condition> "OR" <condition>
-<comparison_operator> ::= "=" | "!=" | ">" | ">=" | "<" | "<="
-SELECT 
 
 
 
 // DELETE Command
 <delete_from> ::= "DELETE FROM" <identifier> [<where_clause>]
-DELETE FROM tab 
+DELETE FROM tab where (name = )
 
 
 // UPDATE Command
@@ -73,7 +63,7 @@ DELETE FROM tab
 
 // DROP TABLE Command
 <drop_table> ::= "DROP TABLE" <identifier>
-
+drop table tab_name
 
 
 // Optional Grammar Extensions
@@ -88,3 +78,15 @@ DELETE FROM tab
                  | "DROP COLUMN" <identifier>
 
 
+
+                 
+// SELECT Command
+<select> ::= "SELECT" <select_list> "FROM" <identifier> [<where_clause>] [<order_by_clause>]
+<select_list> ::= "*" | <identifier> ("," <identifier>)*
+<where_clause> ::= "WHERE" <condition>
+<order_by_clause> ::= "ORDER BY" <identifier> ["ASC" | "DESC"]
+<condition> ::= <identifier> <comparison_operator> <value> 
+              | <condition> "AND" <condition> 
+              | <condition> "OR" <condition>
+<comparison_operator> ::= "=" | "!=" | ">" | ">=" | "<" | "<="
+SELECT 

@@ -156,9 +156,7 @@ public:
 
     // Print key-value pairs
     void print() {
-        std::cout << "Total entries: " << size_ << std::endl;
-        std::cout << "Key - Value pairs:" << std::endl;
-        std::cout << "=================" << std::endl;
+        
 
         // Find leftmost leaf
         Node* current = root;
@@ -168,6 +166,7 @@ public:
 
         // Print all leaf nodes
         size_t count = 0;
+     
         while (current != nullptr) {
             for (size_t i = 0; i < current->keys.size(); ++i) {
                 std::cout << current->keys[i] << "  -  ";
@@ -184,32 +183,32 @@ public:
             }
             current = current->next;
         }
-        std::cout << "\nTotal " << count << " entries printed" << std::endl;
+        std::cout << "\nTotal " << count << " entries" << std::endl;
     }
 
-    // Print specific range of entries
-    void printRange(size_t start, size_t end) {
-        if (start >= size_ || end <= start) {
-            std::cout << "Invalid range" << std::endl;
-            return;
-        }
+    //// Print specific range of entries
+    //void printRange(size_t start, size_t end) {
+    //    if (start >= size_ || end <= start) {
+    //        std::cout << "Invalid range" << std::endl;
+    //        return;
+    //    }
 
-        end = std::min(end, size_);
+    //    end = std::min(end, size_);
 
-        Node* current = root;
-        while (!current->isLeaf) {
-            current = current->children[0];
-        }
+    //    Node* current = root;
+    //    while (!current->isLeaf) {
+    //        current = current->children[0];
+    //    }
 
-        size_t count = 0;
-        while (current != nullptr && count < end) {
-            for (size_t i = 0; i < current->keys.size() && count < end; ++i) {
-                if (count >= start) {
-                    std::cout << current->keys[i] << " - " << current->values[i] << std::endl;
-                }
-                count++;
-            }
-            current = current->next;
-        }
-    }
+    //    size_t count = 0;
+    //    while (current != nullptr && count < end) {
+    //        for (size_t i = 0; i < current->keys.size() && count < end; ++i) {
+    //            if (count >= start) {
+    //                std::cout << current->keys[i] << " - " << current->values[i] << std::endl;
+    //            }
+    //            count++;
+    //        }
+    //        current = current->next;
+    //    }
+    //}
 };

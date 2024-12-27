@@ -12,7 +12,7 @@ endif()
 project ("database-cpp")
 
 # Add source to this project's executable.
-add_executable (database-cpp "src/database.cpp" "include/database.h" "include/tokenizer.h" "src/main.cpp" "src/db_parser.cpp" "src/tokenizer.cpp" "include/db_parser.h" "include/executor.h" "src/executor.cpp" "src/bplustree.cpp" "include/bplustree.h")
+add_executable (database-cpp "src/database.cpp" "include/database.h" "include/tokenizer.h" "src/main.cpp" "src/db_parser.cpp" "src/tokenizer.cpp" "include/db_parser.h" "include/executor.h" "src/executor.cpp" "src/bplustree.cpp" "include/bplustree.h" "include/timer.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET database-cpp PROPERTY CXX_STANDARD 20)
