@@ -144,7 +144,7 @@ void Database::db_start() {
 
 
 	// Benchmarking
-	benchmarking();
+	//benchmarking();
 
 	while (true)  {
 		startPrint();
