@@ -30,6 +30,13 @@ NOTE: Disk Presistence is not Done
    - Show all the entries that is present in that particular table
      ```sql
      SHOW ENTRIES FROM tablename
+     ```
+   
+4. **DELETE TABLE**
+   - Deletes the table
+     ```sql
+     DROP TABLE tablename
+     ```
 
 ## Getting Started
 
@@ -51,11 +58,11 @@ NOTE: Disk Presistence is not Done
    ```bash
    mkdir build && cd build
    cmake ..
-   make
+   cmake --build .
    ```
 3. Run the executable:
    ```bash
-   ./database-cpp
+   ./database-cpp.exe
    ```
 
 
