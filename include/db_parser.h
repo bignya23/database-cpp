@@ -27,8 +27,12 @@ struct Show_Entries {
     std::string table_name{};
 };
 
+struct Drop_Table {
+    std::string table_name{};
+};
+
 struct Table_fn {
-    std::variant<Create_table, Insert_table, Show_Entries> var;
+    std::variant<Create_table, Insert_table, Show_Entries, Drop_Table> var;
 };
 
 class Parser { 

@@ -109,6 +109,24 @@ struct Executor::CommandExecutor {
         }
     }
 
+    // Delete the table 
+    void operator()(const Drop_Table dt) {
+        auto it = executor_.tabledata.find(dt.table_name);
+        if (it != executor_.tabledata.end()) {
+            // Erase the table data
+            executor_.tabledata.erase(it);
+            // Erase the table schema
+            executor_.tableSchemas.erase(dt.table_name);
+            std::cout << "Table : " << dt.table_name <<
+                "deleted.\n";
+        }
+        else {
+            throw std::runtime_error("Table not found\n");
+        }
+    }
+
+    
+
 private:
     Executor& executor_;
 };

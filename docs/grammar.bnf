@@ -46,13 +46,16 @@ SHOW_ENTRIES_COMMAND ::= "SHOW" "ENTRIES" "FROM" IDENTIFIER ";"
 SHOW ENTRIES FROM tab
 
 
+// DROP TABLE Command  //DONE
+<drop_table> ::= "DROP TABLE" <identifier>
+drop table tab_name
 
 
 
 
 // DELETE Command
 <delete_from> ::= "DELETE FROM" <identifier> [<where_clause>]
-DELETE FROM tab where (name = )
+
 
 
 // UPDATE Command
@@ -61,9 +64,6 @@ DELETE FROM tab where (name = )
 
 
 
-// DROP TABLE Command
-<drop_table> ::= "DROP TABLE" <identifier>
-drop table tab_name
 
 
 // Optional Grammar Extensions

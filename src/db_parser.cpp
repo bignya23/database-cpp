@@ -114,9 +114,28 @@ std::optional<Table_fn> Parser::parse_tokens() {
 			}
 		}
 		else {
-			throw std::runtime_error("Identifier Not Found \n");
+			throw std::runtime_error("Table name Not Found \n");
 		}
 		return Table_fn{ .var = new_entries };
+	}
+	// Delete the table
+	else if (peek().has_value() && peek().value().token == TokenType::DROP && peek(1).has_value() && peek(1).value().token == TokenType::TABLE) {
+		consume();
+		consume(); //drop table
+		
+
+		Drop_Table dt;
+
+		if (peek().has_value() && peek().value().token == TokenType::IDENTIFIER) { // TABLE NAME
+			if (auto identifier = ident_get()) {
+				dt.table_name = identifier.value().ident;
+			}
+		}
+		else {
+			throw std::runtime_error("Table name Not Found \n");
+		}
+		return Table_fn{ .var = dt };
+
 	}
 
 	// For errors
