@@ -6,6 +6,8 @@ A lightweight relational database engine written in C++ with support for a **com
 
 The database engine uses a **B+ Tree** as its underlying data structure for efficient key-value storage.
 
+NOTE: Disk Presistence is not Done
+
 ---
 
 ## USAGE
@@ -28,6 +30,13 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
    - Show all the entries that is present in that particular table
      ```sql
      SHOW ENTRIES FROM tablename
+     ```
+   
+4. **DELETE TABLE**
+   - Deletes the table
+     ```sql
+     DROP TABLE tablename
+     ```
 
 ## Getting Started
 
@@ -49,11 +58,11 @@ The database engine uses a **B+ Tree** as its underlying data structure for effi
    ```bash
    mkdir build && cd build
    cmake ..
-   make
+   cmake --build .
    ```
 3. Run the executable:
    ```bash
-   ./database-cpp
+   ./database-cpp.exe
    ```
 
 
