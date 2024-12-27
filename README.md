@@ -6,7 +6,7 @@ A lightweight relational database engine written in C++ with support for a **com
 
 The database engine uses a **B+ Tree** as its underlying data structure for efficient key-value storage.
 
-NOTE: Disk Presistence is not Done
+NOTE: Disk Persistence has not been implemented yet.
 
 ---
 
